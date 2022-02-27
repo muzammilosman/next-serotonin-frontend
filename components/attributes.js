@@ -16,9 +16,14 @@ const Attributes = ({article}) => {
 
                 on
                 <span className="attribute-val px-1">
-                    <Moment format="MMM Do YYYY">
-                        { createdAt ? createdAt : ``}
-                    </Moment>
+                    {
+                        createdAt ? (
+                            <Moment format="MMM Do YYYY">
+                                {createdAt}
+                            </Moment>
+                        ) : <></>
+                    }
+                    
                 </span>
 
                 in
