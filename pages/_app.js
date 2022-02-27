@@ -1,6 +1,6 @@
 import App from "next/app"
 import Head from "next/head"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 import "../assets/css/style.scss"
 import "../assets/css/_style.scss"
 import { createContext } from "react"
@@ -27,7 +27,9 @@ const MyApp = ({ Component, pageProps }) => {
         <div className="container">
           <div className="hero-title text-center py-4">
             <Link href="/">
-              <h1 className="title-header col-md-6 m-auto p-3">{homepage.attributes.hero.title}</h1>
+              <h1 className="title-header col-md-6 m-auto p-3">
+                {homepage.attributes.hero.title}
+              </h1>
             </Link>
             <div className="hero-subtitle text-center py-5">
               <p>.... a solution to your chemical imbalance</p>
@@ -61,11 +63,14 @@ MyApp.getInitialProps = async (ctx) => {
     populate: {
       hero: "*",
       seo: { populate: "*" },
-    }
-  });
+    },
+  })
 
   // Pass the data to our page via props
-  return { ...appProps, pageProps: { global: globalRes.data, homepage: homepageRes.data } }
+  return {
+    ...appProps,
+    pageProps: { global: globalRes.data, homepage: homepageRes.data },
+  }
 }
 
 export default MyApp

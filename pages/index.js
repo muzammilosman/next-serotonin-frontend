@@ -29,9 +29,9 @@ export async function getStaticProps() {
       populate: {
         hero: "*",
         seo: { populate: "*" },
-      }
+      },
     }),
-  ]);
+  ])
 
   return {
     props: {

@@ -10,9 +10,9 @@ import { useEffect, useState } from "react"
 
 const Article = ({ article, categories, articleList }) => {
   const imageUrl = getStrapiMedia(article.attributes.image)
-  const author = article.attributes.author.data.attributes;
-  const [prevArticle, setPrev] = useState('');
-  const [nextArticle, setNext] = useState('');
+  const author = article.attributes.author.data.attributes
+  const [prevArticle, setPrev] = useState("")
+  const [nextArticle, setNext] = useState("")
 
   const seo = {
     metaTitle: article.attributes.title,
@@ -22,18 +22,24 @@ const Article = ({ article, categories, articleList }) => {
   }
 
   useEffect(() => {
-    const currentArticleIndex = articleList.findIndex((indexArticle) => indexArticle.path === article.attributes.slug);
-    if(currentArticleIndex >= 0){
-      articleList[currentArticleIndex - 1] ? setPrev(articleList[currentArticleIndex - 1]) : setPrev('');
-      articleList[currentArticleIndex + 1] ? setNext(articleList[currentArticleIndex + 1]) : setNext('');
+    const currentArticleIndex = articleList.findIndex(
+      (indexArticle) => indexArticle.path === article.attributes.slug
+    )
+    if (currentArticleIndex >= 0) {
+      articleList[currentArticleIndex - 1]
+        ? setPrev(articleList[currentArticleIndex - 1])
+        : setPrev("")
+      articleList[currentArticleIndex + 1]
+        ? setNext(articleList[currentArticleIndex + 1])
+        : setNext("")
     }
-  }, [articleList]);
+  }, [articleList])
 
   return (
     <Layout categories={categories.data}>
       <Seo seo={seo} />
       <div className="blog-title text-center py-5">
-          <h1>{article.attributes.title}</h1>
+        <h1>{article.attributes.title}</h1>
       </div>
       <div className="col-md-6 m-auto">
         <div className="blog-banner py-1 w-100">
@@ -55,7 +61,7 @@ const Article = ({ article, categories, articleList }) => {
             </div>
             <div className="uk-width-expand">
               <p className="uk-margin-remove-bottom">
-                By { author.name ? author.name : `Anonymous`}
+                By {author.name ? author.name : `Anonymous`}
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
                 <Moment format="MMM Do YYYY">
@@ -65,20 +71,32 @@ const Article = ({ article, categories, articleList }) => {
             </div>
           </div>
           <div className="nav-blogs-section row py-5 my-3">
-            {
-              prevArticle ? (
-                <div className="col-md-6 nav-blog-item previous-blog text-left px-2 py-3">
-                    <div className="nav-label">Previous blog</div>
-                    <Link href={`/article/${prevArticle.path}`} className="nav-name text-decoration-none">{prevArticle.title}</Link>
-                </div>)  : <></>
-            }
-            {
-              nextArticle ? (
-              <div  className="col-md-6 nav-blog-item next-blog text-right px-2 py-3">
-                  <div className="nav-label">Next blog</div>
-                  <Link href={`/article/${nextArticle.path}`} className="nav-name text-decoration-none">{nextArticle.title}</Link>
-              </div>) : <></>
-            }
+            {prevArticle ? (
+              <div className="col-md-6 nav-blog-item previous-blog text-left px-2 py-3">
+                <div className="nav-label">Previous blog</div>
+                <Link
+                  href={`/article/${prevArticle.path}`}
+                  className="nav-name text-decoration-none"
+                >
+                  {prevArticle.title}
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )}
+            {nextArticle ? (
+              <div className="col-md-6 nav-blog-item next-blog text-right px-2 py-3">
+                <div className="nav-label">Next blog</div>
+                <Link
+                  href={`/article/${nextArticle.path}`}
+                  className="nav-name text-decoration-none"
+                >
+                  {nextArticle.title}
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
@@ -87,14 +105,14 @@ const Article = ({ article, categories, articleList }) => {
 }
 
 export async function getStaticPaths() {
-  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
+  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] })
   const paths = articlesRes.data.map((article) => {
     return {
       params: {
-        slug: article.attributes.slug
-      }
+        slug: article.attributes.slug,
+      },
     }
-  });
+  })
   return {
     paths,
     fallback: false,
@@ -110,16 +128,20 @@ export async function getStaticProps({ params }) {
   })
   const categoriesRes = await fetchAPI("/categories")
 
-  const articleListRes = await fetchAPI("/articles", { fields: ["slug", "title"] });
-  const articleList = articleListRes.data.map((article) => (
-    {
-      path: article.attributes.slug,
-      title: article.attributes.title
-    }
-  ));
+  const articleListRes = await fetchAPI("/articles", {
+    fields: ["slug", "title"],
+  })
+  const articleList = articleListRes.data.map((article) => ({
+    path: article.attributes.slug,
+    title: article.attributes.title,
+  }))
 
   return {
-    props: { article: articlesRes.data[0], categories: categoriesRes, articleList },
+    props: {
+      article: articlesRes.data[0],
+      categories: categoriesRes,
+      articleList,
+    },
     revalidate: 1,
   }
 }

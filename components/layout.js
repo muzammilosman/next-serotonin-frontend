@@ -1,9 +1,9 @@
 import NavApp from "./nav"
 
-const Layout = ({ children, categories, seo}) =>{
+const Layout = ({ children, categories, seo }) => {
   return (
     <div>
-      <NavApp categories={categories}/>
+      <NavApp categories={categories} />
       {children}
     </div>
   )
