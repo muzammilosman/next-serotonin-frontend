@@ -4,7 +4,7 @@
 const nextConfig = {
   images: {
     loader: "default",
-    domains: ["localhost", "temujin-blog-strapi.herokuapp.com"],
+    domains: ["localhost", "temujin-blog-strapi.herokuapp.com", "res.cloudinary.com"],
   },
 }
 
