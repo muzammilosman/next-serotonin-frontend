@@ -14,13 +14,13 @@ const Card = ({ article, index }) => {
             </p> */}
       </div>
       <Attributes article={article} />
-      <div className="w-50 mx-auto">
+      <div className="w-100 mx-auto">
         <NextImage image={article.attributes.image} />
       </div>
       <Description description={article.attributes.description} />
       <div className="continue-read text-center">
         <Link href={`/article/${article.attributes.slug}`}>
-          <a className="text-decoration-none p-2">
+          <a className="text-decoration-none p-2 continue-reading-link">
             Continue reading
             <i className="bi bi-arrow-right px-1"></i>
           </a>
