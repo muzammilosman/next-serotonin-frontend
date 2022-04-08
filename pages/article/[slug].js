@@ -7,6 +7,7 @@ import Seo from "../../components/seo"
 import { getStrapiMedia } from "../../lib/media"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { Newsletter } from "../../components/newsletter"
 
 const Article = ({ article, categories, articleList }) => {
   const imageUrl = getStrapiMedia(article.attributes.image)
@@ -82,7 +83,7 @@ const Article = ({ article, categories, articleList }) => {
                 </Link>
               </div>
             ) : (
-              <></>
+              <div className="col-md-6 nav-blog-item previous-blog text-left px-2 py-3"></div>
             )}
             {nextArticle ? (
               <div className="col-md-6 nav-blog-item next-blog text-right px-2 py-3">
@@ -97,6 +98,9 @@ const Article = ({ article, categories, articleList }) => {
             ) : (
               <></>
             )}
+          </div>
+          <div className="newsletter-form">
+            <Newsletter></Newsletter>
           </div>
         </div>
       </div>
