@@ -12,18 +12,25 @@ export const Newsletter = () => {
   }
 
   return (
-    <div>
-      <form className="row" onSubmit={submitEmail}>
-        <input
-          placeholder="Enter your email to subscribe for our newsletter"
-          name="email"
-          className="col-md-10"
-          type="email"
-        />
-        <button className="btn col-md-2" type="submit">
-          SUBSCRIBE
-        </button>
-      </form>
+    <div className="text-center newsletter-section p-4 rounded">
+      <div className="newsletter-header">
+        <div className="header-text">
+          Get our latest posts on email and join our community of writers
+        </div>
+      </div>
+      <div className="newsletter-form">
+        <form className="row p-3 m-2" onSubmit={submitEmail}>
+          <input
+            placeholder="Enter your email here"
+            name="email"
+            className="col-md-8 rounded"
+            type="email"
+          />
+          <button className="btn col-md-4" type="submit">
+            SUBSCRIBE
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

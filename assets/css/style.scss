@@ -137,3 +137,51 @@ img:hover {
 .previous-blog{
   text-align: left;
 }
+
+.newsletter-section{
+  background-color: $hover-color;
+
+  .newsletter-header {
+    .header-text {
+      font-weight: bold;
+      font-size: 24px;
+    }
+  }
+
+  .newsletter-form{
+    input {
+      border: none;
+    }
+    button {
+      background: $secondary-font-color;
+      color: #fff;
+    }
+  }
+}
+
+// media-queries
+
+@media screen and (max-width: 480px) {
+  .hero-subtitle{
+    padding-bottom: 0 !important;
+  }
+
+  .blog-title h1{
+    font-size: 45px;
+  }
+
+  iframe {
+    width: 100%;
+  }
+
+  .newsletter-form{
+    button {
+      margin-top: 5px;
+    }
+  }
+
+  .nav-blog-item{
+    background-color: $hover-color;
+    margin-top: 5px;
+  }
+}
