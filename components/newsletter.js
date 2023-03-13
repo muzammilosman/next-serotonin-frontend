@@ -8,7 +8,6 @@ export const Newsletter = () => {
     const emailResponse = await postAPI("/newsletters", {
       email: newsletterEmail,
     })
-    console.log(emailResponse)
   }
 
   return (
